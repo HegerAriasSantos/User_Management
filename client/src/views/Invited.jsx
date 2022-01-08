@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import BackArrow from "../components/BackArrow";
 
 function Invited(props) {
 	const [user, setUser] = useState();
@@ -21,6 +22,7 @@ function Invited(props) {
 	}, [id]);
 	return (
 		<div className='flex items-center justify-center min-h-screen bg-gray-100'>
+			<BackArrow />;
 			{id !== 1 && (
 				<button
 					onClick={() => {

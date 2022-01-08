@@ -40,7 +40,10 @@ const CreateTask = props => {
 		event.preventDefault();
 		if (editing) {
 			await axios
-				.patch(`http://localhost:3001/tasks/${params.id}`, task)
+				.patch(`http://localhost:3001/tasks/${params.id}`, {
+					...task,
+					name: props.user.name,
+				})
 				.then(e => {
 					alert("Update successfully");
 				})
@@ -49,7 +52,10 @@ const CreateTask = props => {
 				});
 		} else {
 			await axios
-				.post("http://localhost:3001/tasks/new", task)
+				.post("http://localhost:3001/tasks/new", {
+					...task,
+					name: props.user.name,
+				})
 				.then(e => {
 					alert("Created successfully");
 				})

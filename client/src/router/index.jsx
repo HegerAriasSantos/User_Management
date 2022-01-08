@@ -15,22 +15,24 @@ function App() {
 	return (
 		<BrowserRouter>
 			{!pass ? (
-				<Routes>
-					<Route
-						path='/login'
-						element={<Login setPass={setPass} setUser={setUser} />}
-					/>
-					<Route
-						path='/register'
-						element={<Register setPass={setPass} setUser={setUser} />}
-					/>
-					<Route
-						path='/invited'
-						element={<Invited setPass={setPass} setUser={setUser} />}
-					/>
-					<Route index path='/' element={<Home />} />
-					<Route path='*' element={<NotFound user={false} />} />
-				</Routes>
+				<>
+					<Routes>
+						<Route
+							path='/login'
+							element={<Login setPass={setPass} setUser={setUser} />}
+						/>
+						<Route
+							path='/register'
+							element={<Register setPass={setPass} setUser={setUser} />}
+						/>
+						<Route
+							path='/invited'
+							element={<Invited setPass={setPass} setUser={setUser} />}
+						/>
+						<Route index path='/' element={<Home />} />
+						<Route path='*' element={<NotFound user={false} />} />
+					</Routes>
+				</>
 			) : (
 				<>
 					<Menu user={user} setPass={setPass} />

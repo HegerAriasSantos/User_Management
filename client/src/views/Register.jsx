@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import BackArrow from "../components/BackArrow";
 function Register(props) {
 	const [form, setForm] = useState({
 		name: "",
@@ -36,6 +36,7 @@ function Register(props) {
 	};
 	return (
 		<div className='flex items-center justify-center min-h-screen bg-gray-100'>
+			<BackArrow />;
 			<div className='px-8 py-6 mx-4 mt-4 text-left bg-white shadow-lg md:w-1/3 lg:w-1/3 sm:w-1/3'>
 				<h3 className='text-2xl font-bold text-center'>Join us</h3>
 				<form onSubmit={e => handleSubmit(e)}>

@@ -1,7 +1,7 @@
 import { useNavigate, Link } from "react-router-dom";
 import { useEffect } from "react";
 
-export default function ButtonAppBar(props) {
+export default function Navbar(props) {
 	const navigate = useNavigate();
 	useEffect(() => {
 		if (props.user.isInvited) {
@@ -25,11 +25,21 @@ export default function ButtonAppBar(props) {
 							Prueba tecnica
 						</Link>
 					</div>
-					<button
-						className='text-center block  rounded py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white'
-						onClick={() => navigate("/tasks/new")}>
-						New Task
-					</button>
+					<div className='flex items-center justify-between gap-10'>
+						<button
+							className='text-center block  rounded py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white'
+							onClick={() => navigate("/tasks/new")}>
+							New Task
+						</button>
+						<button
+							className='text-center block  rounded py-2 px-4 bg-red-600 hover:bg-red-700 text-white'
+							onClick={() => {
+								props.setPass(false);
+								navigate("/");
+							}}>
+							Sign Out
+						</button>
+					</div>
 				</div>
 			</div>
 		</>
