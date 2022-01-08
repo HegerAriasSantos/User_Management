@@ -12,7 +12,7 @@ router.post("/register", (req, res) => {
 			success(res, data, 200);
 		})
 		.catch(e => {
-			error(res, e, 500);
+			error(req, res, e, 500);
 		});
 });
 
@@ -24,24 +24,12 @@ router.post("/login", (req, res) => {
 			success(res, data, 200);
 		})
 		.catch(e => {
-			error(res, e, 500);
+			error(req, res, e, 500);
 		});
 });
 
 router.post("/auth", auth, async (req, res) => {
 	success(res, "Welcome", 200);
-});
-
-router.get("/", function (req, res) {
-	const { userId } = req.body;
-	controller
-		.getUser(userId)
-		.then(data => {
-			success(res, data, 200);
-		})
-		.catch(e => {
-			error(res, e, 500);
-		});
 });
 
 export default router;

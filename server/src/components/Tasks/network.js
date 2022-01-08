@@ -10,7 +10,7 @@ router.get("/", function (req, res) {
 			success(res, data, 200);
 		})
 		.catch(e => {
-			error(res, e, 500);
+			error(req, res, e, 500);
 		});
 });
 router.get("/id/:id", function (req, res) {
@@ -18,10 +18,10 @@ router.get("/id/:id", function (req, res) {
 	controller
 		.getTask(req.params.id)
 		.then(data => {
-			success(res, data, 200);
+			success(req, res, data, 200);
 		})
 		.catch(e => {
-			error(res, e, 500);
+			error(req, res, e, 500);
 		});
 });
 
@@ -33,7 +33,7 @@ router.post("/new", function (req, res) {
 			success(res, data, 200);
 		})
 		.catch(e => {
-			error(res, e, 500);
+			error(req, res, e, 500);
 		});
 });
 router.patch("/:id", function (req, res) {
@@ -45,7 +45,7 @@ router.patch("/:id", function (req, res) {
 			success(res, data, 200);
 		})
 		.catch(e => {
-			error(res, e, 500);
+			error(req, res, e, 500);
 		});
 });
 router.delete("/:id", function (req, res) {
@@ -57,7 +57,7 @@ router.delete("/:id", function (req, res) {
 			success(res, data, 200);
 		})
 		.catch(e => {
-			error(res, e, 500);
+			error(req, res, e, 500);
 		});
 });
 

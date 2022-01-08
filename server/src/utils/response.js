@@ -1,3 +1,4 @@
+import { logError } from "../components/logs/controller";
 export const success = function (res, message, status) {
 	res.status(status).send({
 		Headers: {
@@ -10,7 +11,8 @@ export const success = function (res, message, status) {
 		body: message,
 	});
 };
-export const error = function (res, message, status) {
+export const error = function (req, res, message, status) {
+	logError(req.body.name, new Date().toLocaleString(), message);
 	res.status(status).send({
 		error: message,
 		body: "",
