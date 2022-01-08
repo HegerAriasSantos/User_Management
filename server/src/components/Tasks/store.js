@@ -4,25 +4,31 @@ function add(Task) {
 	const myTask = new Model(Task);
 	myTask.save();
 }
-function list(filter) {
+function list() {
 	return new Promise((resolve, reject) => {
-		resolve(Model.find(filter));
+		resolve(Model.find());
+	});
+}
+function findOne(id) {
+	return new Promise((resolve, reject) => {
+		resolve(Model.findOne({ _id: id }));
 	});
 }
 
-async function update(id, title, description) {
-	return new Promise((resolve, reject) => {
-		const foundMessage = Model.findById(id);
+async function update(title, description, id) {
+	return new Promise(async (resolve, reject) => {
+		const foundMessage = await Model.findById(id);
 		foundMessage.title = title;
 		foundMessage.description = description;
+		console.log(foundMessage.title, foundMessage.description);
 
-		const newMessage = foundMessage.save();
+		const newMessage = await foundMessage.save();
 		resolve(newMessage);
 	});
 }
-function Delete(_id) {
+function Delete(id) {
 	return new Promise((resolve, reject) => {
-		resolve(Model.deleteOne({ _id }));
+		resolve(Model.deleteOne({ _id: id }));
 	});
 }
 
@@ -31,4 +37,5 @@ export default {
 	list,
 	update,
 	Delete,
+	findOne,
 };

@@ -34,7 +34,8 @@ function login(name, password, isInvited) {
 			const token = jwt.sign({ name }, config.TOKEN_KEY, {
 				expiresIn: "0.5h",
 			});
-			resolve(token);
+			let userInvited = { name, token };
+			resolve(userInvited);
 		}
 		if (!(password && name)) {
 			return reject("All input is required");

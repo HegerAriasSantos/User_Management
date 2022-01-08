@@ -3,8 +3,6 @@ const router = express.Router();
 import { success, error } from "../../utils/response";
 import controller from "./controller";
 
-import auth from "../../middleware/auth";
-
 router.get("/", function (req, res) {
 	controller
 		.getTasks()
@@ -15,11 +13,22 @@ router.get("/", function (req, res) {
 			error(res, e, 500);
 		});
 });
-
-router.post("/", auth, function (req, res) {
-	const { userId, title, description } = req.body;
+router.get("/id/:id", function (req, res) {
+	console.log(req.params.id);
 	controller
-		.addTask(userId, title, description)
+		.getTask(req.params.id)
+		.then(data => {
+			success(res, data, 200);
+		})
+		.catch(e => {
+			error(res, e, 500);
+		});
+});
+
+router.post("/new", function (req, res) {
+	const { name, title, description } = req.body;
+	controller
+		.addTask(name, title, description)
 		.then(data => {
 			success(res, data, 200);
 		})
@@ -28,9 +37,10 @@ router.post("/", auth, function (req, res) {
 		});
 });
 router.patch("/:id", function (req, res) {
-	const { userId, title, description } = req.body;
+	const { title, description } = req.body;
+	const { id } = req.params;
 	controller
-		.updateTask(userId, title, description)
+		.updateTask(title, description, id)
 		.then(data => {
 			success(res, data, 200);
 		})
@@ -39,6 +49,8 @@ router.patch("/:id", function (req, res) {
 		});
 });
 router.delete("/:id", function (req, res) {
+	console.log(req.params.id);
+	console.log("a");
 	controller
 		.deleteTask(req.params.id)
 		.then(data => {

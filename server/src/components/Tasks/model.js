@@ -9,5 +9,5 @@ const mySchema = new Schema({
 	description: String,
 });
 
-const model = mongoose.model("task", mySchema);
+const model = mongoose.model("tasks", mySchema);
 module.exports = model;

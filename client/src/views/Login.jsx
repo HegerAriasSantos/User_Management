@@ -20,6 +20,8 @@ function Login(props) {
 			.post("http://localhost:3001/user/login", user)
 			.then(e => {
 				console.log(e);
+				let { name, token } = e.data.body;
+				props.setUser({ name, token });
 				props.setPass(true);
 				alert("welcome");
 				navigate("/tasks");

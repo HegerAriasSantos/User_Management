@@ -24,6 +24,8 @@ function Register(props) {
 			.post("http://localhost:3001/user/register", user)
 			.then(e => {
 				props.setPass(true);
+				let { name, token } = e.data.body;
+				props.setUser({ name, token });
 				alert("Bienvenido");
 				navigate("/tasks");
 			})

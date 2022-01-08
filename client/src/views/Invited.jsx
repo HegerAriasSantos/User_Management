@@ -10,8 +10,6 @@ function Invited(props) {
 		axios
 			.get(`https://jsonplaceholder.typicode.com/users/${id}`)
 			.then(e => {
-				props.setUser(e.data.body);
-				console.log(e.data.body);
 				console.log(e.data);
 				setUser(e.data);
 			})
@@ -46,8 +44,12 @@ function Invited(props) {
 							axios
 								.post("http://localhost:3001/user/login", {
 									isInvited: true,
+									name: user.name,
 								})
 								.then(e => {
+									let invited = { ...e.data.body, isInvited: true };
+									props.setUser(invited);
+									console.log(e.data.body);
 									props.setPass(true);
 									alert("welcome");
 									navigate("/tasks");

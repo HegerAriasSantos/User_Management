@@ -33,7 +33,7 @@ function App() {
 				</Routes>
 			) : (
 				<>
-					<Menu setPass={setPass} />
+					<Menu user={user} setPass={setPass} />
 					<div className='bg-gray-900 flex justify-center items-center  min-h-screen max-h-fit  relative order-1'>
 						<Routes>
 							<Route path='/tasks' element={<TasksList user={user} />} />

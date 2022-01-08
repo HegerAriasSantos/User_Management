@@ -1,6 +1,6 @@
 import store from "./store";
 
-function addTask(userId, title, description) {
+function addTask(name, title, description) {
 	return new Promise((resolve, reject) => {
 		if (!title && !description) {
 			console.error("Faltan datos");
@@ -9,7 +9,7 @@ function addTask(userId, title, description) {
 		}
 
 		let fullTask = {
-			userId,
+			name,
 			title,
 			description,
 		};
@@ -17,20 +17,9 @@ function addTask(userId, title, description) {
 		resolve(fullTask);
 	});
 }
-function getTasks(userId = null, title = null, description = null) {
+function getTasks() {
 	return new Promise((resolve, reject) => {
-		let filter = {};
-		if (userId !== null) {
-			filter["user"] = userId;
-		}
-		if (title !== null) {
-			filter["title"] = title;
-		}
-		if (description !== null) {
-			filter["description"] = "description";
-		}
-
-		const Tasks = store.list(filter);
+		const Tasks = store.list();
 
 		if (!Tasks) {
 			reject("No hay tareas disponibles");
@@ -40,20 +29,29 @@ function getTasks(userId = null, title = null, description = null) {
 	});
 }
 
-function updateTask(userId, title, description) {
+function updateTask(title, description, id) {
 	return new Promise((resolve, reject) => {
-		if (!userId && !description && !title) {
+		if (!description && !title && !id) {
 			reject("Invalid data");
 			return false;
 		}
-		const response = store.update(userId, title, description);
+		const response = store.update(title, description, id);
 		resolve(response);
 	});
 }
 
 function deleteTask(id) {
 	return new Promise((resolve, reject) => {
-		const response = store.Delete(id);
+		const response = store.Delete({ _id: id });
+		if (!response) {
+			reject("There's not message");
+		}
+		resolve(response);
+	});
+}
+function getTask(id) {
+	return new Promise((resolve, reject) => {
+		const response = store.findOne(id);
 		if (!response) {
 			reject("There's not message");
 		}
@@ -64,6 +62,7 @@ function deleteTask(id) {
 export default {
 	addTask,
 	getTasks,
+	getTask,
 	updateTask,
 	deleteTask,
 };
