@@ -22,7 +22,7 @@ function Home() {
 					<Link
 						className='text-center block  rounded py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white'
 						to='Invited'>
-						Sing in like a Invited
+						Sing in as a guest
 					</Link>
 				</div>
 			</div>
